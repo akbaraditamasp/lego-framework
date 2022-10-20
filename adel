@@ -36,6 +36,23 @@ class $name
     fclose($file);
 }
 
+function makeModel($name) {
+    $text = "<?php
+namespace Model;
+    
+use Illuminate\Database\Eloquent\Model;
+ 
+class $name extends Model
+{
+    //
+}
+";
+
+    $file = fopen(__DIR__."/models/$name.php", "w") or die("Unable to open file!");
+    fwrite($file, $text);
+    fclose($file);
+}
+
 $arg = $argv[1];
 unset($argv[0]);
 unset($argv[1]);
@@ -54,6 +71,9 @@ switch ($arg) {
         break;
     case "make:controller":
         makeController($argv[0]);
+        break;
+    case "make:model":
+        makeModel($argv[0]);
         break;
     default:
         echo "Command not found";

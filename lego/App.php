@@ -27,6 +27,10 @@ class App
             $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
             $dotenv->load();
         });
+
+        $this->router->before("GET|POST|PUT|DELETE|PATCH|OPTIONS", "/.*", function () {
+            Eloquent::boot();
+        });
     }
 
     public function set(string $key, $value)
