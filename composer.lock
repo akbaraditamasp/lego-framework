@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51b27e4aa357be3577a6b24a262f9c32",
+    "content-hash": "20dc340e7209d56b777afd1d9f62badf",
     "packages": [
         {
             "name": "bramus/router",
@@ -378,6 +378,60 @@
             "time": "2022-10-20T09:10:12+00:00"
         },
         {
+            "name": "endyjasmi/cuid",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/endyjasmi/cuid.git",
+                "reference": "a425a1071cb07bafc9355e85dd288b5b5d1245f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/endyjasmi/cuid/zipball/a425a1071cb07bafc9355e85dd288b5b5d1245f5",
+                "reference": "a425a1071cb07bafc9355e85dd288b5b5d1245f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "satooshi/php-coveralls": "0.*",
+                "squizlabs/php_codesniffer": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EndyJasmi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Endy Jasmi",
+                    "email": "endyjasmi@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Cuid php port",
+            "keywords": [
+                "UID",
+                "cuid",
+                "guid",
+                "id",
+                "uuid"
+            ],
+            "support": {
+                "email": "endyjasmi@gmail.com",
+                "issues": "https://github.com/endyjasmi/cuid/issues",
+                "source": "https://github.com/endyjasmi/cuid"
+            },
+            "time": "2020-01-02T02:46:25+00:00"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.1.0",
             "source": {
@@ -441,7 +495,7 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v9.36.3",
+            "version": "v9.36.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
@@ -496,7 +550,7 @@
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v9.36.3",
+            "version": "v9.36.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -542,7 +596,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v9.36.3",
+            "version": "v9.36.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -593,7 +647,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v9.36.3",
+            "version": "v9.36.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -641,16 +695,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v9.36.3",
+            "version": "v9.36.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "dcad4f998891784b23e229bcb42bf0c0ea4cd52e"
+                "reference": "bed7b5b981bff908e1dd55147d05411a3b53fc52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/dcad4f998891784b23e229bcb42bf0c0ea4cd52e",
-                "reference": "dcad4f998891784b23e229bcb42bf0c0ea4cd52e",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/bed7b5b981bff908e1dd55147d05411a3b53fc52",
+                "reference": "bed7b5b981bff908e1dd55147d05411a3b53fc52",
                 "shasum": ""
             },
             "require": {
@@ -705,11 +759,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-10-19T08:59:33+00:00"
+            "time": "2022-10-20T14:46:17+00:00"
         },
         {
             "name": "illuminate/macroable",
-            "version": "v9.36.3",
+            "version": "v9.36.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -755,16 +809,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v9.36.3",
+            "version": "v9.36.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "51c61f2880340102edfdf08b3bc4f0c6a33a54c1"
+                "reference": "9cb95dbb30af8ee2fba58e732c0c472f7f77ade6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/51c61f2880340102edfdf08b3bc4f0c6a33a54c1",
-                "reference": "51c61f2880340102edfdf08b3bc4f0c6a33a54c1",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/9cb95dbb30af8ee2fba58e732c0c472f7f77ade6",
+                "reference": "9cb95dbb30af8ee2fba58e732c0c472f7f77ade6",
                 "shasum": ""
             },
             "require": {
@@ -821,7 +875,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-10-14T18:22:17+00:00"
+            "time": "2022-10-20T13:35:15+00:00"
         },
         {
             "name": "medz/cors",
