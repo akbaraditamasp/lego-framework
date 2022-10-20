@@ -1,0 +1,19 @@
+{
+    "name": "akbaraditamasp/lego-framework",
+    "description": "Like lego, this framework is built by combining several php libraries.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "akbaraditamasp"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lego\\": "lego/"
+        }
+    },
+    "require": {
+        "bramus/router": "~1.6"
+    }
+}
