@@ -19,10 +19,6 @@ class App
         $this->response = new Response();
     }
 
-    public function finish() {
-        Sapi::sendResponse($this->response);
-    }
-
     public function set(string $key, $value)
     {
         $this->$key = $value;
@@ -38,7 +34,11 @@ class App
         $app = $this;
         return $this->router->match($methods, $pattern, function (...$params) use ($callback, $app) {
             $app->set("params", $params);
-            $callback($app);
+            $body = $callback($app);
+
+            $this->response->setHeader("Content-Type", "application/json");
+            $this->response->setBody(json_encode($body));
+            Sapi::sendResponse($this->response);
         });
     }
 
@@ -50,14 +50,16 @@ class App
         });
     }
 
-    public function mount($pattern, $callback) {
+    public function mount($pattern, $callback)
+    {
         $app = $this;
         return $this->router->mount($pattern, function () use ($callback, $app) {
             $callback($app);
         });
     }
 
-    public function getRouter() {
+    public function getRouter()
+    {
         return $this->router;
     }
 }
