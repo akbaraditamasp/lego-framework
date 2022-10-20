@@ -33,13 +33,19 @@ class App
         });
     }
 
-    public function validate($rules) {
+    public function validate($rules)
+    {
         Validation::validate($this, $rules, $this->request->getPostData() + $this->request->getRawFiles());
     }
 
     public function set(string $key, $value)
     {
         $this->$key = $value;
+    }
+
+    public function auth($strict = true)
+    {
+        Auth::auth($this, $strict);
     }
 
     public function run()
