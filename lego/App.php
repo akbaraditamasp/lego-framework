@@ -2,14 +2,25 @@
 namespace Lego;
 
 use Bramus\Router\Router;
+use Sabre\HTTP\RequestInterface;
+use Sabre\HTTP\Response;
+use Sabre\HTTP\Sapi;
 
 class App
 {
     private Router $router;
+    public RequestInterface $request;
+    public Response $response;
 
     public function __construct()
     {
         $this->router = new Router();
+        $this->request = Sapi::getRequest();
+        $this->response = new Response();
+    }
+
+    public function finish() {
+        Sapi::sendResponse($this->response);
     }
 
     public function set(string $key, $value)
