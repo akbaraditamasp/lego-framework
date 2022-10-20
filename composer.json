@@ -21,6 +21,7 @@
     "medz/cors": "^1.5",
     "vlucas/phpdotenv": "^5.5",
     "illuminate/database": "^9.36",
-    "robmorgan/phinx": "^0.13.1"
+    "robmorgan/phinx": "^0.13.1",
+    "rakit/validation": "^1.4"
   }
 }

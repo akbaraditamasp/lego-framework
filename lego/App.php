@@ -33,6 +33,10 @@ class App
         });
     }
 
+    public function validate($rules) {
+        Validation::validate($this, $rules, $this->request->getPostData() + $this->request->getRawFiles());
+    }
+
     public function set(string $key, $value)
     {
         $this->$key = $value;

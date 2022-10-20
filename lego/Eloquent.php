@@ -1,9 +1,7 @@
 <?php
 namespace Lego;
 
-use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Events\Dispatcher;
 
 class Eloquent
 {
@@ -22,7 +20,6 @@ class Eloquent
             'prefix' => '',
         ]);
 
-        $capsule->setEventDispatcher(new Dispatcher(new Container));
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
     }
