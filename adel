@@ -17,6 +17,25 @@ function getParam($args)
     return $param;
 }
 
+function makeController($name) {
+    $text = "<?php
+namespace Controller;
+    
+use Lego\App;
+    
+class $name
+{
+    public static function index(App \$app)
+    {
+    }
+}
+";
+
+    $file = fopen(__DIR__."/controllers/$name.php", "w") or die("Unable to open file!");
+    fwrite($file, $text);
+    fclose($file);
+}
+
 $arg = $argv[1];
 unset($argv[0]);
 unset($argv[1]);
@@ -31,6 +50,9 @@ switch ($arg) {
 
         print_r($output);
 
+        break;
+    case "make:controller":
+        makeController($argv[0]);
         break;
     default:
         echo "Command not found";
