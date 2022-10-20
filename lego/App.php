@@ -2,6 +2,7 @@
 namespace Lego;
 
 use Bramus\Router\Router;
+use Dotenv\Dotenv;
 use Sabre\HTTP\Response;
 use Sabre\HTTP\Sapi;
 
@@ -21,6 +22,11 @@ class App
 
         $this->router->before("GET|POST|PUT|DELETE|PATCH|OPTIONS", "/.*", $cors->middleware($this));
         $this->router->match("OPTIONS", "/.*", $cors->options($this));
+
+        $this->router->before("GET|POST|PUT|DELETE|PATCH|OPTIONS", "/.*", function () {
+            $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
+            $dotenv->load();
+        });
     }
 
     public function set(string $key, $value)
@@ -39,10 +45,10 @@ class App
         return $this->router->match($methods, $pattern, function (...$params) use ($callback, $app) {
             $app->set("params", $params);
             $this->response->setStatus(200);
-            
+
             $body = $callback($app);
 
-            if($body) {
+            if ($body) {
                 $this->response->setHeader("Content-Type", "application/json");
                 $this->response->setBody(json_encode($body));
             }
