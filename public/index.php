@@ -5,8 +5,6 @@ use Lego\App;
 
 $app = new App();
 
-$app->route("GET", "/", function () {
-    echo "Hello world!";
-});
+$app->route("GET", "/", "Controller\\Welcome::index");
 
 $app->run();

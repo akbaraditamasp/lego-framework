@@ -17,6 +17,11 @@ class App
         $this->router = new Router();
         $this->request = Sapi::getRequest();
         $this->response = new Response();
+
+        $cors = new Cors();
+
+        $this->router->before("GET|POST|PUT|DELETE|PATCH|OPTIONS", "/.*", $cors->middleware($this));
+        $this->router->match("OPTIONS", "/.*", $cors->options($this));
     }
 
     public function set(string $key, $value)
@@ -40,6 +45,11 @@ class App
             $this->response->setBody(json_encode($body));
             Sapi::sendResponse($this->response);
         });
+    }
+
+    public function finish()
+    {
+        Sapi::sendResponse($this->response);
     }
 
     public function before($methods, $pattern, $callback)
