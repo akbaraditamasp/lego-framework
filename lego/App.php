@@ -2,20 +2,19 @@
 namespace Lego;
 
 use Bramus\Router\Router;
-use Sabre\HTTP\RequestInterface;
 use Sabre\HTTP\Response;
 use Sabre\HTTP\Sapi;
 
 class App
 {
     private Router $router;
-    public RequestInterface $request;
+    public Request $request;
     public Response $response;
 
     public function __construct()
     {
         $this->router = new Router();
-        $this->request = Sapi::getRequest();
+        $this->request = new Request(Sapi::getRequest());
         $this->response = new Response();
 
         $cors = new Cors();
@@ -39,10 +38,15 @@ class App
         $app = $this;
         return $this->router->match($methods, $pattern, function (...$params) use ($callback, $app) {
             $app->set("params", $params);
+            $this->response->setStatus(200);
+            
             $body = $callback($app);
 
-            $this->response->setHeader("Content-Type", "application/json");
-            $this->response->setBody(json_encode($body));
+            if($body) {
+                $this->response->setHeader("Content-Type", "application/json");
+                $this->response->setBody(json_encode($body));
+            }
+
             Sapi::sendResponse($this->response);
         });
     }

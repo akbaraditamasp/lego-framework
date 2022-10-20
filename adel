@@ -46,7 +46,8 @@ switch ($arg) {
     case "run":
         $param = getParam($argv);
         $port = isset($param["p"]) ? $param["p"] : "8080";
-        exec("php -S localhost:$port -t public", $output);
+        $host = isset($param["h"]) ? $param["h"] : "localhost"; 
+        exec("php -S $host:$port -t public", $output);
 
         print_r($output);
 
