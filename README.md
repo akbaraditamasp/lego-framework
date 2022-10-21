@@ -3,7 +3,8 @@ PHP Framework built from a combination of several libraries.
 
 ## Installation
 
-composer create-project akbaraditamasp/lego-framework example-app
+```composer create-project akbaraditamasp/lego-framework example-app```
+
 Then run the following command in the terminal to start the localhost web server.
 
 ```php adel run```
