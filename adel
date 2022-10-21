@@ -90,7 +90,9 @@ switch ($arg) {
         makeModel($argv[0]);
         echo "Model has been created";
         $param = getParam($argv);
-        system(__DIR__."/vendor/bin/phinx create " . $argv[0]);
+        if(isset($param["m"])) {
+            system(__DIR__."/vendor/bin/phinx create " . $argv[0]);
+        }
         break;
     case "migration":
         system(__DIR__."/vendor/bin/phinx " . combineParam($argv));
