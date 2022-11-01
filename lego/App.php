@@ -3,17 +3,22 @@ namespace Lego;
 
 use Bramus\Router\Router;
 use Dotenv\Dotenv;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Sabre\HTTP\Response;
 use Sabre\HTTP\Sapi;
 
 class App
 {
-    private Router $router;
-    public Request $request;
-    public Response $response;
+    private $router;
+    public $request;
+    public $response;
 
     public function __construct()
     {
+        $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
+        $dotenv->load();
+        Eloquent::boot();
+
         $this->router = new Router();
         $this->request = new Request(Sapi::getRequest());
         $this->response = new Response();
@@ -22,15 +27,6 @@ class App
 
         $this->router->before("GET|POST|PUT|DELETE|PATCH|OPTIONS", "/.*", $cors->middleware($this));
         $this->router->match("OPTIONS", "/.*", $cors->options($this));
-
-        $this->router->before("GET|POST|PUT|DELETE|PATCH|OPTIONS", "/.*", function () {
-            $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
-            $dotenv->load();
-        });
-
-        $this->router->before("GET|POST|PUT|DELETE|PATCH|OPTIONS", "/.*", function () {
-            Eloquent::boot();
-        });
     }
 
     public function validate($rules)
@@ -58,13 +54,20 @@ class App
         $app = $this;
         return $this->router->match($methods, $pattern, function (...$params) use ($callback, $app) {
             $app->set("params", $params);
-            $this->response->setStatus(200);
 
-            $body = $callback($app);
+            try {
+                $this->response->setStatus(200);
 
-            if ($body) {
+                $body = $callback($app);
+
+                if ($body) {
+                    $this->response->setHeader("Content-Type", "application/json");
+                    $this->response->setBody(json_encode($body));
+                }
+            } catch (ModelNotFoundException $e) {
+                $this->response->setStatus(404);
                 $this->response->setHeader("Content-Type", "application/json");
-                $this->response->setBody(json_encode($body));
+                $this->response->setBody(["error" => "Not Found"]);
             }
 
             Sapi::sendResponse($this->response);

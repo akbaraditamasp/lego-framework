@@ -41,6 +41,7 @@ class Cors
     {
         $response = $this->response;
         return function () use ($response, $app) {
+            $app->response->setStatus(200);
             $app->response->setHeader("Access-Control-Allow-Methods", $response["Access-Control-Allow-Methods"] ?? "");
             $app->response->setHeader("Access-Control-Allow-Headers", $response["Access-Control-Allow-Headers"] ?? "");
 
